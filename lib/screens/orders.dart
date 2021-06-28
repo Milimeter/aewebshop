@@ -8,7 +8,7 @@ class UserOrder extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor:  Colors.white,
+        backgroundColor: Colors.white,
         elevation: 0.0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
@@ -24,7 +24,6 @@ class UserOrder extends StatelessWidget {
         height: size.height,
         width: size.width,
         child: StreamBuilder<QuerySnapshot>(
-            // <2> Pass `Stream<QuerySnapshot>` to stream
             stream: FirebaseFirestore.instance
                 .collection('orders')
                 .orderBy("timestamp", descending: true)
@@ -32,24 +31,21 @@ class UserOrder extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 if (snapshot.data.docs.length == 0) {
-                  return Center(child: Text("No posts at the moment"));
+                  return Center(child: Text("No order at the moment"));
                 } else {
                   return ListView.builder(
                     itemCount: snapshot.data.docs.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       print(snapshot.data.docs[index].data());
-                      // return postThread(
-                      //   title: snapshot.data.docs[index].data()["Title"],
-                      //   description:
-                      //       snapshot.data.docs[index].data()["Description"],
-                      // );
+                      print("===========================");
+                      print(snapshot.data.docs[index].data()["itemsInfo"]);
+
                       return orderThread(
                         status: snapshot.data.docs[index].data()["status"],
-                        orderPrice:
-                            snapshot.data.docs[index].data()["orderPrice"],
                         itemsInfo:
                             snapshot.data.docs[index].data()["itemsInfo"],
+                        price: snapshot.data.docs[index].data()["price"],
                       );
                     },
                   );
@@ -64,21 +60,35 @@ class UserOrder extends StatelessWidget {
     );
   }
 
-  Widget orderThread({String status, String orderPrice, List itemsInfo}) {
-    return Container(
-        child: Column(
-      children: [
-        ListTile(
-          leading: Icon(Icons.notification_important),
-          title: Text(itemsInfo[0]),
-          subtitle: Text(orderPrice),
-          trailing: Text(status),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-          child: Divider(),
-        ),
-      ],
-    ));
+  Widget orderThread({String status, List itemsInfo, String price}) {
+    print(itemsInfo[0]["name"]);
+    //Text(item["name"])
+    return Column(
+      children: itemsInfo
+          .map(
+            (item) => new ListTile(
+              leading: Icon(Icons.notification_important),
+              title: Text(item["name"]),
+              subtitle: Text(status),
+              trailing: Text(price ?? ""),
+            ),
+          )
+          .toList(),
+    );
+    // return Container(
+    //     child: Column(
+    //   children: [
+    // ListTile(
+    //   leading: Icon(Icons.notification_important),
+    //   title: Text(itemsInfo[0]["name"]),
+    //   subtitle: Text(""),
+    //   trailing: Text(status),
+    // ),
+    //     Padding(
+    //       padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+    //       child: Divider(),
+    //     ),
+    //   ],
+    // ));
   }
 }

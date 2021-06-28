@@ -16,14 +16,11 @@ class CartItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     _orderController.orders.add({
       "image": cartItem.image,
       "name": cartItem.name,
-      "quantity" : cartItem.quantity,
-      "cost": cartItem.cost,
-      "price": cartItem.price,
     });
-    
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -52,29 +49,10 @@ class CartItemWidget extends StatelessWidget {
                     onPressed: () {
                       cartController.decreaseQuantity(cartItem);
                     }),
-                // Padding(
-                //   padding: const EdgeInsets.all(8.0),
-                //   child: CustomText(
-                //     text: cartItem.quantity.toString(),
-                //   ),
-                // ),
-                // IconButton(
-                //     icon: Icon(Icons.chevron_right),
-                //     onPressed: () {
-                //       cartController.increaseQuantity(cartItem);
-                //     }),
               ],
             )
           ],
         )),
-        Padding(
-          padding: const EdgeInsets.all(14),
-          child: CustomText(
-            text: "\$${cartItem.cost}",
-            size: 22,
-            weight: FontWeight.bold,
-          ),
-        ),
       ],
     );
   }

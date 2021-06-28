@@ -1,5 +1,7 @@
-2021/06/17-03:10:48.338 a7f Recovering log #5
-2021/06/17-03:10:49.353 a7f Delete type=0 #5
-2021/06/17-03:10:49.353 a7f Delete type=0 #3
-2021/06/17-03:10:49.353 a7f Delete type=3 #2
-2021/06/17-03:10:49.353 a7f Delete type=3 #4
+2021/06/17-03:17:18.518 cbc Recovering log #7
+2021/06/17-03:17:19.371 cbc Delete type=0 #7
+2021/06/17-03:17:19.371 cbc Delete type=0 #5
+2021/06/17-03:17:19.371 cbc Delete type=3 #6
+2021/06/17-03:17:19.371 cbc Delete type=0 #3
+2021/06/17-03:17:19.371 cbc Delete type=3 #2
+2021/06/17-03:17:19.371 cbc Delete type=3 #4

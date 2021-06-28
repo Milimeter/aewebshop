@@ -50,33 +50,28 @@ class ShoppingCartWidget extends StatelessWidget {
           child: Container(
             width: MediaQuery.of(context).size.width,
             padding: EdgeInsets.all(8),
-            child: Obx(
-              () => CustomButton(
-                  text:
-                      "Order (\$${cartController.totalCartPrice.value.toStringAsFixed(2)})",
-                  onTap: () {
-                    // convert each item to a string by using JSON encoding
-                    final jsonList = orderController.orders
-                        .map((item) => jsonEncode(item))
-                        .toList();
+            child: CustomButton(
+                // text:
+                //     "Order (\$${cartController.totalCartPrice.value.toStringAsFixed(2)})",
+                text: "Order",
+                onTap: () {
+                  // // convert each item to a string by using JSON encoding
+                  final jsonList = orderController.orders
+                      .map((item) => jsonEncode(item))
+                      .toList();
 
-                    // using toSet - toList strategy
-                    final uniqueJsonList = jsonList.toSet().toList();
+                  // // using toSet - toList strategy
+                  final uniqueJsonList = jsonList.toSet().toList();
 
-                    // convert each item back to the original form using JSON decoding
-                   final myOrders =
-                        uniqueJsonList.map((item) => jsonDecode(item)).toList();
-                    print(myOrders);
+                  // // convert each item back to the original form using JSON decoding
+                  final myOrders =
+                      uniqueJsonList.map((item) => jsonDecode(item)).toList();
+                  print(myOrders);
 
-                     orderController.createOrder(
-                      itemInfo: myOrders,
-                      orderPrice: cartController.totalCartPrice.value
-                          .toStringAsFixed(2),
-                    );
-
-                    //paymentsController.createPaymentMethod();
-                  }),
-            ),
+                  orderController.createOrder(
+                    itemInfo: myOrders,
+                  );
+                }),
           ),
         ),
         Positioned(
