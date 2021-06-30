@@ -103,6 +103,8 @@ class UserController extends GetxController {
       "id": userId,
       "email": emailTextEditingController.text.trim(),
       "password": passwordTextEditingController.text.trim(),
+      "number": "",
+      "address": "",
       "cart": []
     }).then((_) {
       // userData.bindStream(listenToUser());

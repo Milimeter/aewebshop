@@ -55,22 +55,27 @@ class ShoppingCartWidget extends StatelessWidget {
                 //     "Order (\$${cartController.totalCartPrice.value.toStringAsFixed(2)})",
                 text: "Order",
                 onTap: () {
-                  // // convert each item to a string by using JSON encoding
-                  final jsonList = orderController.orders
-                      .map((item) => jsonEncode(item))
-                      .toList();
+                  if (userController.userData.value.number != "" ||
+                      userController.userData.value.address != "") {
+// // convert each item to a string by using JSON encoding
+                    final jsonList = orderController.orders
+                        .map((item) => jsonEncode(item))
+                        .toList();
 
-                  // // using toSet - toList strategy
-                  final uniqueJsonList = jsonList.toSet().toList();
+                    // // using toSet - toList strategy
+                    final uniqueJsonList = jsonList.toSet().toList();
 
-                  // // convert each item back to the original form using JSON decoding
-                  final myOrders =
-                      uniqueJsonList.map((item) => jsonDecode(item)).toList();
-                  print(myOrders);
+                    // // convert each item back to the original form using JSON decoding
+                    final myOrders =
+                        uniqueJsonList.map((item) => jsonDecode(item)).toList();
+                    print(myOrders);
 
-                  orderController.createOrder(
-                    itemInfo: myOrders,
-                  );
+                    orderController.createOrder(
+                      itemInfo: myOrders,
+                    );
+                  } else {
+                    Get.snackbar("Error", "Please Update your Profile");
+                  }
                 }),
           ),
         ),

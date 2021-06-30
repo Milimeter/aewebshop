@@ -1,8 +1,10 @@
+import 'package:aewebshop/controllers/user_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class UserOrder extends StatelessWidget {
+  UserController _userController = Get.find();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -26,6 +28,7 @@ class UserOrder extends StatelessWidget {
         child: StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
                 .collection('orders')
+                .where("id", isEqualTo: _userController.userData.value.id)
                 .orderBy("timestamp", descending: true)
                 .snapshots(),
             builder: (context, snapshot) {

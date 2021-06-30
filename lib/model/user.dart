@@ -4,12 +4,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class UserData {
   static const ID = "id";
   static const NAME = "name";
+  static const ADDRESS = "address";
+  static const NUMBER = "number";
   static const EMAIL = "email";
   static const CART = "cart";
 
   String id;
   String name;
   String email;
+  String number;
+  String address;
   List<CartItemModel> cart;
 
   UserData({this.id, this.name, this.email, this.cart});
@@ -18,6 +22,8 @@ class UserData {
     name = snapshot.get(NAME) ?? "";
     email = snapshot.get(EMAIL) ?? "";
     id = snapshot.get(ID) ?? "";
+    address = snapshot.get(ADDRESS) ?? "";
+    number = snapshot.get(NUMBER) ?? "";
     cart = _convertCartItems(snapshot.get(CART) ?? []);
   }
 

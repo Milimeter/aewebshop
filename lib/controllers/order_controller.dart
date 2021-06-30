@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
-
 class OrderController extends GetxController {
   UserController _userController = Get.find();
   CollectionReference _firebaseFirestore =
@@ -23,6 +22,8 @@ class OrderController extends GetxController {
       "status": "pending",
       "name": _userController.userData.value.name,
       "id": _userController.userData.value.id,
+      "number": _userController.userData.value.number,
+      "address": _userController.userData.value.address,
       "itemsInfo": itemInfo,
       "orderId": uuid.v1()
     }).then((value) {

@@ -2,6 +2,7 @@ import 'package:aewebshop/controllers/cart_controller.dart';
 import 'package:aewebshop/controllers/user_controller.dart';
 import 'package:aewebshop/model/product.dart';
 import 'package:aewebshop/screens/orders.dart';
+import 'package:aewebshop/screens/profile.dart';
 import 'package:aewebshop/screens/shopping_cart.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -224,6 +225,10 @@ class _PregledArtikalaState extends State<PregledArtikala> {
           IconButton(
             icon: Icon(Icons.notification_add, color: Colors.black),
             onPressed: ()=> Get.to(UserOrder()),
+          ),
+          IconButton(
+            icon: Icon(Icons.person, color: Colors.black),
+            onPressed: ()=> Get.to(ProfilePage()),
           ),
                Container(
                     decoration: BoxDecoration(
@@ -696,8 +701,8 @@ class _PregledArtikalaState extends State<PregledArtikala> {
                                                             .symmetric(
                                                                 vertical: 15,
                                                                 horizontal: 30),
-                                                        child: Obx(
-                                                          () => Text(
+                                                        child: 
+                                                           Text(
                                                             // _auth.isLogged ? _auth.userEmail : "Login",
                                                             userController
                                                                     .userData
@@ -708,7 +713,7 @@ class _PregledArtikalaState extends State<PregledArtikala> {
                                                               color:
                                                                   Colors.black,
                                                             ),
-                                                          ),
+                                                         
                                                         ),
                                                       ),
                                                     ],
