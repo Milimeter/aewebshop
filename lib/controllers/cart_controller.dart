@@ -53,7 +53,7 @@ class CartController extends GetxController {
       if (_isItemAlreadyAdded(product)) {
         Get.snackbar("Check your cart", "${product.name} is already added");
       } else {
-        String itemId = Uuid().toString();
+        String itemId = Uuid().v1.toString();
         userController.updateUserData({
           "cart": FieldValue.arrayUnion([
             {
@@ -61,9 +61,9 @@ class CartController extends GetxController {
               "productId": product.id,
               "name": product.name,
               "quantity": 1,
-              "price": product.price,
+              "price": 0,
               "image": product.image,
-              "cost": product.price
+              "cost": 0,
             }
           ])
         });

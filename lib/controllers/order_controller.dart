@@ -1,4 +1,5 @@
 import 'package:aewebshop/controllers/user_controller.dart';
+import 'package:aewebshop/model/product.dart';
 import 'package:aewebshop/utilities/loading.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
@@ -30,5 +31,18 @@ class OrderController extends GetxController {
       // _userController.userData.value.cart = null;
     });
     dismissLoading();
+  }
+
+  requestPrice({ProductDetailModel productModel}) {
+    FirebaseFirestore.instance.collection("priceRequest").add({
+      "timestamp": DateTime.now().millisecondsSinceEpoch,
+      "customerName": _userController.userData.value.name,
+      "customerId": _userController.userData.value.id,
+      "productName": productModel.name,
+      "productBrand": productModel.brand,
+      "productId": productModel.id,
+      "productModel": productModel.model,
+      "productImage": productModel.image,
+    });
   }
 }

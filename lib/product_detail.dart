@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'constants/sizes.dart';
 import 'controllers/cart_controller.dart';
 import 'controllers/user_controller.dart';
+import 'controllers/order_controller.dart';
 
 class DetailWidget extends StatefulWidget {
   DetailWidget({
@@ -37,6 +38,7 @@ class _DetailWidgetState extends State<DetailWidget> {
   String opis;
   ProductDetailModel productModel;
   CartController cartController = Get.find();
+  OrderController orderController = Get.find();
   @override
   void initState() {
     super.initState();
@@ -128,11 +130,13 @@ class _DetailWidgetState extends State<DetailWidget> {
                                     ? Axis.horizontal
                                     : Axis.vertical,
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(right: screenSize == Sizes.Large ? 100 : 0),
+                                    padding: EdgeInsets.only(
+                                        right: screenSize == Sizes.Large
+                                            ? 100
+                                            : 0),
                                     child: Column(
                                       children: [
                                         Container(
@@ -178,13 +182,12 @@ class _DetailWidgetState extends State<DetailWidget> {
                                                                 ? 0.5
                                                                 : 1,
                                                             child: Center(
-                                                                child:
-                                                                    Image.network(
-                                                                        item,
-                                                                        fit: BoxFit
-                                                                            .cover,
-                                                                        width:
-                                                                            100)),
+                                                                child: Image.network(
+                                                                    item,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                    width:
+                                                                        100)),
                                                           ),
                                                         ),
                                                       ),
@@ -196,7 +199,10 @@ class _DetailWidgetState extends State<DetailWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: screenSize == Sizes.Large ? 100 : 0),
+                                    padding: EdgeInsets.only(
+                                        left: screenSize == Sizes.Large
+                                            ? 100
+                                            : 0),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
@@ -213,12 +219,14 @@ class _DetailWidgetState extends State<DetailWidget> {
                                                 overflow: TextOverflow.clip,
                                                 style: TextStyle(
                                                     fontSize: 20.0,
-                                                    fontWeight: FontWeight.bold),
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                             ),
                                             SizedBox(height: 50),
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 Text(
                                                   "Marka : ",
@@ -226,10 +234,10 @@ class _DetailWidgetState extends State<DetailWidget> {
                                                   overflow: TextOverflow.clip,
                                                   style: TextStyle(
                                                     color: Colors.grey,
-                                                    fontSize:
-                                                        screenSize == Sizes.Large
-                                                            ? 18.0
-                                                            : 14,
+                                                    fontSize: screenSize ==
+                                                            Sizes.Large
+                                                        ? 18.0
+                                                        : 14,
                                                   ),
                                                 ),
                                                 Text(
@@ -237,17 +245,18 @@ class _DetailWidgetState extends State<DetailWidget> {
                                                   textAlign: TextAlign.center,
                                                   overflow: TextOverflow.clip,
                                                   style: TextStyle(
-                                                    fontSize:
-                                                        screenSize == Sizes.Large
-                                                            ? 18.0
-                                                            : 14,
+                                                    fontSize: screenSize ==
+                                                            Sizes.Large
+                                                        ? 18.0
+                                                        : 14,
                                                   ),
                                                 ),
                                               ],
                                             ),
                                             SizedBox(height: 30),
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 Text(
                                                   "Model :  ",
@@ -265,17 +274,18 @@ class _DetailWidgetState extends State<DetailWidget> {
                                                   textAlign: TextAlign.center,
                                                   overflow: TextOverflow.clip,
                                                   style: TextStyle(
-                                                    fontSize:
-                                                        screenSize == Sizes.Large
-                                                            ? 18.0
-                                                            : 14,
+                                                    fontSize: screenSize ==
+                                                            Sizes.Large
+                                                        ? 18.0
+                                                        : 14,
                                                   ),
                                                 ),
                                               ],
                                             ),
                                             SizedBox(height: 30),
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 Text(
                                                   "Kataloski broj :  ",
@@ -293,17 +303,18 @@ class _DetailWidgetState extends State<DetailWidget> {
                                                   textAlign: TextAlign.center,
                                                   overflow: TextOverflow.clip,
                                                   style: TextStyle(
-                                                    fontSize:
-                                                        screenSize == Sizes.Large
-                                                            ? 18.0
-                                                            : 14,
+                                                    fontSize: screenSize ==
+                                                            Sizes.Large
+                                                        ? 18.0
+                                                        : 14,
                                                   ),
                                                 ),
                                               ],
                                             ),
                                             SizedBox(height: 30),
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 Text(
                                                   "Opis :  ",
@@ -321,10 +332,10 @@ class _DetailWidgetState extends State<DetailWidget> {
                                                   textAlign: TextAlign.center,
                                                   overflow: TextOverflow.clip,
                                                   style: TextStyle(
-                                                    fontSize:
-                                                        screenSize == Sizes.Large
-                                                            ? 18.0
-                                                            : 14,
+                                                    fontSize: screenSize ==
+                                                            Sizes.Large
+                                                        ? 18.0
+                                                        : 14,
                                                   ),
                                                 ),
                                               ],
@@ -337,7 +348,8 @@ class _DetailWidgetState extends State<DetailWidget> {
                                           thickness: 0.5,
                                         ),
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
                                           children: [
                                             Text(
                                               "Cijena : ",
@@ -371,6 +383,7 @@ class _DetailWidgetState extends State<DetailWidget> {
                                                 print(this.productModel.id);
                                                 cartController.addProductToCart(
                                                     this.productModel);
+                                                orderController.requestPrice(productModel: this.productModel);
                                               },
                                               text: ("Dodaj artikal u korpu")),
                                         ),

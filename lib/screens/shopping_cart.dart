@@ -4,15 +4,11 @@ import 'package:aewebshop/constants/sizes.dart';
 import 'package:aewebshop/controllers/cart_controller.dart';
 import 'package:aewebshop/controllers/order_controller.dart';
 import 'package:aewebshop/controllers/user_controller.dart';
-import 'package:aewebshop/model/cart_item.dart';
-import 'package:aewebshop/screens/widget/cart_item_widget.dart';
 import 'package:aewebshop/screens/widget/nav_bar.dart';
-import 'package:aewebshop/utilities/loading.dart';
 import 'package:aewebshop/widgets/custom_btn.dart';
 import 'package:aewebshop/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class ShoppingCartWidget extends StatelessWidget {
   final CartController cartController = Get.find();
@@ -112,14 +108,14 @@ class ShoppingCartWidget extends StatelessWidget {
                                   (cartItem) => DataRow(cells: <DataCell>[
                                     DataCell(
                                       Image.network(
-                                              cartItem?.image ?? "",
-                                              height: screenSize == Sizes.Large
-                                                  ? 100
-                                                  : 50,
-                                              width: screenSize == Sizes.Large
-                                                  ? 120
-                                                  : 50,
-                                            ),
+                                        cartItem?.image ?? "",
+                                        height: screenSize == Sizes.Large
+                                            ? 100
+                                            : 50,
+                                        width: screenSize == Sizes.Large
+                                            ? 120
+                                            : 50,
+                                      ),
                                     ),
                                     DataCell(
                                       Container(
@@ -137,7 +133,9 @@ class ShoppingCartWidget extends StatelessWidget {
                                     DataCell(
                                       Padding(
                                         padding: EdgeInsets.only(
-                                            left : screenSize == Sizes.Large ? 25 : 17),
+                                            left: screenSize == Sizes.Large
+                                                ? 25
+                                                : 17),
                                         child: CustomText(
                                           size: screenSize == Sizes.Large
                                               ? 20
@@ -150,17 +148,19 @@ class ShoppingCartWidget extends StatelessWidget {
                                     DataCell(
                                       Padding(
                                         padding: EdgeInsets.only(
-                                            left : screenSize == Sizes.Large ? 17 : 0),
+                                            left: screenSize == Sizes.Large
+                                                ? 17
+                                                : 0),
                                         child: IconButton(
-                                              icon: Icon(
-                                                Icons.remove,
-                                                color: Colors.red,
-                                                size: 30,
-                                              ),
-                                              onPressed: () {
-                                                cartController
-                                                    .removeCartItem(cartItem);
-                                              }),
+                                            icon: Icon(
+                                              Icons.remove,
+                                              color: Colors.red,
+                                              size: 30,
+                                            ),
+                                            onPressed: () {
+                                              cartController
+                                                  .removeCartItem(cartItem);
+                                            }),
                                       ),
                                     ),
                                   ]),
@@ -199,7 +199,7 @@ class ShoppingCartWidget extends StatelessWidget {
                                     () => CustomText(
                                       size: screenSize == Sizes.Large ? 20 : 12,
                                       text:
-                                          " (\$${cartController.totalCartPrice.value.toStringAsFixed(2)})",
+                                          " (\$${cartController.totalCartPrice.value.toStringAsFixed(2) == 0.toString() ? "pending" : cartController.totalCartPrice.value.toStringAsFixed(2)})",
                                       weight: FontWeight.bold,
                                     ),
                                   )

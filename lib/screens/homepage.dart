@@ -14,7 +14,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  UserController _userController = Get.find();
   @override
   void initState() {
     super.initState();
